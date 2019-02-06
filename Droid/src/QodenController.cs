@@ -162,7 +162,13 @@ namespace Qoden.UI
             set
             {
                 _title = value;
-                Activity.Title = _title;
+                if (Activity is QodenActivity qodenActivity)
+                {
+                    qodenActivity.Toolbar.SetTitleView();
+                    qodenActivity.Toolbar.TitleView.Text = value;
+                }
+                else
+                    Activity.Title = _title;
             }
         }
 
